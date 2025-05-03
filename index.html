@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lilia | Rzesy i Brwi | Gdynia</title>
-  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Open+Sans&display=swap" rel="stylesheet">
   <style>
     body {
@@ -12,6 +11,7 @@
       font-family: 'Open Sans', sans-serif;
       background: #fff7f9;
       color: #333;
+      scroll-behavior: smooth;
     }
 
     header {
@@ -42,6 +42,17 @@
       max-width: 900px;
       margin: 40px auto;
       padding: 0 20px;
+    }
+
+    section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     section h2 {
@@ -87,6 +98,51 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
+    .testimonial {
+      background: #fff;
+      border-left: 4px solid #b30059;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      border-radius: 8px;
+    }
+
+    .testimonial p {
+      margin: 0 0 10px;
+      font-style: italic;
+    }
+
+    .testimonial .author {
+      font-weight: bold;
+      color: #b30059;
+    }
+
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      text-decoration: none;
+      z-index: 999;
+      transition: background 0.3s;
+    }
+
+    .whatsapp-button:hover {
+      background-color: #1ebd5a;
+    }
+
+    iframe {
+      width: 100%;
+      border: none;
+      margin-top: 20px;
+      height: 750px;
+    }
+
     footer {
       text-align: center;
       padding: 20px;
@@ -111,8 +167,8 @@
     <ul>
       <li>Laminacja brwi – 100 zł</li>
       <li>Regulacja i farbowanie brwi – 80 zł</li>
-      <li>Nakładanie rzes – 150 zł</li>
-      <li>Lifting rzes – 120 zł</li>
+      <li>Nakładanie rzęs – 150 zł</li>
+      <li>Lifting rzęs – 120 zł</li>
     </ul>
   </section>
 
@@ -124,15 +180,55 @@
     </div>
   </section>
 
+  <section id="testimonials" class="container">
+    <h2>Opinie klientek</h2>
+    <div class="testimonial">
+      <p>"Lilia jest niesamowita! Moje brwi nigdy nie wyglądały lepiej."</p>
+      <div class="author">— Anna K.</div>
+    </div>
+    <div class="testimonial">
+      <p>"Profesjonalizm, jakość i ciepła atmosfera. Polecam z całego serca."</p>
+      <div class="author">— Marta Z.</div>
+    </div>
+    <div class="testimonial">
+      <p>"Po wizycie u Lilii czuję się jak nowa osoba. Pięknie i naturalnie."</p>
+      <div class="author">— Karolina B.</div>
+    </div>
+  </section>
+
+  <section id="leave-review" class="container">
+    <h2>Zostaw swoją opinię</h2>
+    <p>Twoje zdanie jest dla mnie bardzo ważne! Jeśli byłaś na wizycie, zostaw kilka słów — dziękuję 🩷</p>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScPM6u-JflQrdXdEmaXFTGeNCi1rrOT6VBCm76DqO0-k2JJqw/viewform?embedded=true" allowfullscreen>Ładuję…</iframe>
+  </section>
+
   <section id="contact" class="container">
     <h2>Kontakt</h2>
     <p>📍 Gdynia</p>
     <p>📱 <a href="https://t.me/alexandrovna200797" target="_blank">Napisz na Telegramie</a></p>
     <p>📸 <a href="https://www.instagram.com/lashroom_gdynia?igsh=MXU1bHIzaWdidjZqaA==" target="_blank">Instagram: @liliabrows</a></p>
+
   </section>
+
+  <a class="whatsapp-button" href="https://wa.me/48664824720" target="_blank">✨ Umów wizytę przez WhatsApp</a>
 
   <footer>
     <p>&copy; 2025 Lilia. Wszystkie prawa zastrzeżone.</p>
   </footer>
+
+  <script>
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
